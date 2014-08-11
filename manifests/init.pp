@@ -12,13 +12,11 @@
 #   automatically calculated based on the name of the Software Collection.
 # [*epel_version*]
 #   The version of EPEL (6 or 7) that this SCL should be used with. This
-#   parameter defaults to the value of the 'lsbmajdistrelease' fact. If your
-#   RHEL-ish box does not have this fact, install the 'redhat-lsb-core'
-#   package.
+#   parameter defaults to the value of the 'operatingsystemmajrelease' fact.
 #
 define softwarecollectionsorg (
   $scl_url = undef,
-  $epel_version = $::lsbmajdistrelease,
+  $epel_version = $::operatingsystemmajrelease,
 ) {
   case $::osfamily {
     'RedHat': {
@@ -36,9 +34,9 @@ define softwarecollectionsorg (
     }
   }
 
-  case $::lsbmajdistrelease {
+  case $::operatingsystemmajrelease {
     undef: {
-      fail("The release of RHEL/CentOS you are on is unknown to Puppet. Please set the $epel_version parameter.")
+      fail("The release of RHEL/CentOS you are on is unknown to Puppet. Please set the 'epel_version' parameter.")
     }
   }
 
