@@ -30,7 +30,7 @@ define softwarecollectionsorg (
     'x86_64': {
     }
     default: {
-      fail("Software Collections from softwarecollections.org cannot be installed on ${::operatingsystem}.")
+      fail("Software Collections from softwarecollections.org cannot be installed on ${::architecture}.")
     }
   }
 
